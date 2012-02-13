@@ -1,5 +1,6 @@
 package com.dinduks.todolist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dinduks.todolist.Task;
@@ -12,7 +13,7 @@ import com.dinduks.todolist.Task;
  * To change this template use File | Settings | File Templates.
  */
 public class Storage {
-    public static List<Task> tasks;
+    public static ArrayList<Task> tasks = new ArrayList<Task>();
 
     public static List getTasks() {
         return tasks;
