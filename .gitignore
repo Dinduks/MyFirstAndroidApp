@@ -5,3 +5,4 @@ nbproject/
 *.properties
 *.xml
 *.cfg
+!res/
