@@ -1,8 +1,11 @@
+.idea/
 bin/
 gen/
+out/
 libs/
 nbproject/
+!res/
 *.properties
 *.xml
 *.cfg
-!res/
+*.iml

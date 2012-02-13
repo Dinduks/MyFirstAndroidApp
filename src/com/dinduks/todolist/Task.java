@@ -1,13 +1,11 @@
 package com.dinduks.todolist;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dinduks
- * Date: 13/02/12
- * Time: 19:24
- * To change this template use File | Settings | File Templates.
+ *
+ * @author dinduks
  */
 public class Task {
+
     private String title;
     private String description;
 
@@ -26,4 +24,5 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }
