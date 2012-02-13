@@ -1,0 +1,7 @@
+bin/
+gen/
+libs/
+nbproject/
+*.properties
+*.xml
+*.cfg
