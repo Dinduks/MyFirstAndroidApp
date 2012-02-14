@@ -31,6 +31,14 @@ public class AddATaskActivity extends Activity {
                 buildSuccessDialog().show();
             }
         });
+        
+        final Button cancel = (Button) findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(AddATaskActivity.this, HomepageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void saveTask(String title, String description) {
