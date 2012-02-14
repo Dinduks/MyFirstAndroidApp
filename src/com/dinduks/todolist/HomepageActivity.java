@@ -24,6 +24,14 @@ public class HomepageActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        final Button viewAllTheTasksButton = (Button)findViewById(R.id.viewAllTheTasksButton);
+        viewAllTheTasksButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(HomepageActivity.this, ListTasksActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
