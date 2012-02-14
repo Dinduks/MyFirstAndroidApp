@@ -3,15 +3,11 @@ package com.dinduks.todolist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 
+import java.util.ArrayList;
 import java.util.List;
-
-//import static java.lang.String.valueOf;
 
 /**
  *
@@ -22,29 +18,29 @@ public class ListTasksActivity extends Activity {
         super.onCreate(icicle);
         setContentView(R.layout.listtasks);
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.listTasksLayout);
-
+        // Create a list of the tasks' titles
         List<Task> tasks = StorageSingleton.get().getTasks();
+        List<String> tasksNames = new ArrayList<String>();
         for (Task task: tasks) {
-            final int taskIndex = tasks.indexOf(task);
-
-            // TODO: Add a line return to each TextView
-            TextView text = new TextView(this);
-            text.setText(task.getTitle());
-            text.setClickable(true);
-
-            text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.w(String.valueOf(taskIndex), String.valueOf(taskIndex));
-                    Intent intent = new Intent(ListTasksActivity.this, ShowTaskActivity.class);
-                    intent.putExtra("taskIndex'", taskIndex);
-                    startActivity(intent);
-                }
-            });
-
-            layout.addView(text);
+            tasksNames.add(task.getTitle());
         }
+
+        ListView lv = new ListView(this);
+        // Create an adapter using the XML list and the list of the tasks' titles
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listtasks_list, tasksNames);
+        lv.setAdapter(adapter);
+        // Set an OnClick event on the list's elements
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int taskIndex, long l) {
+                Intent intent = new Intent(ListTasksActivity.this, ShowTaskActivity.class);
+                intent.putExtra("taskIndex'", taskIndex);
+                startActivity(intent);
+            }
+        });
+
+        LinearLayout layout = (LinearLayout) findViewById(R.id.listTasksLayout);
+        layout.addView(lv);
 
         final Button goBackButton = (Button) findViewById(R.id.goBackButton);
         goBackButton.setOnClickListener(new View.OnClickListener() {
