@@ -18,7 +18,7 @@ public class AddATaskActivity extends Activity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.addatask);
+        setContentView(R.layout.taskform);
 
         final Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -31,7 +31,7 @@ public class AddATaskActivity extends Activity {
                 buildSuccessDialog().show();
             }
         });
-        
+
         final Button cancel = (Button) findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

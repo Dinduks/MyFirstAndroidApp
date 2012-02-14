@@ -2,12 +2,12 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:textStyle="bold"
-              android:text="Title:\n
-"
+              android:text="Title: "
               android:singleLine="false" />
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
@@ -19,6 +19,10 @@
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:id="@+id/description" />
+    <Button android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Edit this task"
+            android:id="@+id/editTask" />
     <Button android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Delete this task"

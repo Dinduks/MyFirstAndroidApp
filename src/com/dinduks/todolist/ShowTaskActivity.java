@@ -26,7 +26,6 @@ public class ShowTaskActivity extends Activity {
         TextView title = (TextView) findViewById(R.id.title);
         TextView description = (TextView) findViewById(R.id.description);
 
-        // TODO: Add a line return to the title
         title.setText(task.getTitle());
         description.setText(task.getDescription());
 
@@ -36,6 +35,16 @@ public class ShowTaskActivity extends Activity {
             public void onClick(View view) {
                 StorageSingleton.get().deleteTask(taskIndex);
                 buildDeleteSuccessDialog().show();
+            }
+        });
+
+        Button editTaskButton = (Button) findViewById(R.id.editTask);
+        editTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ShowTaskActivity.this, EditTaskActivity.class);
+                intent.putExtra("taskIndex", taskIndex);
+                startActivity(intent);
             }
         });
     }

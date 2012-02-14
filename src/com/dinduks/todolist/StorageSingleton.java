@@ -33,5 +33,12 @@ public class StorageSingleton {
     public void deleteTask(int taskIndex) {
         tasks.remove(taskIndex);
     }
+    
+    public void editTask(int taskIndex, String title, String description) {
+        Task task = tasks.get(taskIndex);
+        task.setTitle(title);
+        task.setDescription(description);
+        tasks.set(taskIndex, task);
+    }
 
 }
