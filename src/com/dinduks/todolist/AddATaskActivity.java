@@ -37,7 +37,7 @@ public class AddATaskActivity extends Activity {
         Task task = new Task();
         task.setTitle(title);
         task.setDescription(description);
-        Storage.addTask(task);
+        StorageSingleton.get().addTask(task);
     }
 
     private AlertDialog buildSuccessDialog() {
