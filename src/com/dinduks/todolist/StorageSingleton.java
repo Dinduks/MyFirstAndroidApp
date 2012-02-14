@@ -30,4 +30,8 @@ public class StorageSingleton {
         tasks.add(task);
     }
 
+    public void deleteTask(int taskIndex) {
+        tasks.remove(taskIndex);
+    }
+
 }

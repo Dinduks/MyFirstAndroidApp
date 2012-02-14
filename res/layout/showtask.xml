@@ -5,18 +5,22 @@
               android:layout_height="fill_parent">
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
-              android:text="Title: " />
+              android:textStyle="bold"
+              android:text="Title:\n
+"
+              android:singleLine="false" />
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:id="@+id/title" />
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
+              android:textStyle="bold"
               android:text="Description: "/>
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:id="@+id/description" />
     <Button android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Return to the list"
-            android:id="@+id/goBackButton" />
+            android:text="Delete this task"
+            android:id="@+id/deleteTask" />
 </LinearLayout>
