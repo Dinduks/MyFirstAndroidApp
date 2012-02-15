@@ -4,39 +4,49 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import com.dinduks.todolist.models.Task;
+import android.widget.*;
 
 /**
  * @author dinduks
  */
 public class ShowTaskActivity extends Activity {
 
-    public static final String TASK_INDEX = "taskIndex";
+    public static final String TASK_ID = "taskId";
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.showtask);
 
         Bundle bundle = this.getIntent().getExtras();
-        final int taskIndex = bundle.getInt(TASK_INDEX);
+        final int taskId = bundle.getInt(TASK_ID);
 
-        Task task = StorageSingleton.get().getTasks().get(taskIndex);
+        TaskOpenHelper database = new TaskOpenHelper(this);
+        Cursor cursor = database.getReadableDatabase().query(
+                TaskOpenHelper.TASK_TABLE_NAME,
+                null,
+                "_id=?",
+                new String[]{String.valueOf(taskId)},
+                null,
+                null,
+                null);
 
+        cursor.moveToFirst();
+        String title = cursor.getString(cursor.getColumnIndex(TaskOpenHelper.TITLE_COLUMN));
+        String description = cursor.getString(cursor.getColumnIndex(TaskOpenHelper.TITLE_COLUMN));
+        
         TextView titleView = (TextView) findViewById(R.id.title);
         TextView descriptionView = (TextView) findViewById(R.id.description);
-
-        titleView.setText(task.getTitle());
-        descriptionView.setText(task.getDescription());
+        titleView.setText(title);
+        descriptionView.setText(description);
 
         Button deleteTaskButton = (Button) findViewById(R.id.deleteTask);
         deleteTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageSingleton.get().deleteTask(taskIndex);
+                StorageSingleton.get().deleteTask(taskId);
                 buildDeleteSuccessDialog().show();
             }
         });
@@ -46,7 +56,7 @@ public class ShowTaskActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShowTaskActivity.this, EditTaskActivity.class);
-                intent.putExtra(TASK_INDEX, taskIndex);
+                intent.putExtra(TASK_ID, taskId);
                 startActivity(intent);
             }
         });

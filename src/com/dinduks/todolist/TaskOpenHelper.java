@@ -10,14 +10,14 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class TaskOpenHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "todolist";
     public static final String TASK_TABLE_NAME = "task";
     public static final String TITLE_COLUMN = "title";
     public static final String DESCRIPTION_COLUMN = "description";
     private static final String TASK_TABLE_CREATE =
             "CREATE TABLE " + TASK_TABLE_NAME + " (" +
-            "_id INTEGER," +
+            "_id INTEGER PRIMARY KEY," +
             TITLE_COLUMN + " VARCHAR(255)," +
             DESCRIPTION_COLUMN + " TEXT);";
 

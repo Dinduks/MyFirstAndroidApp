@@ -28,7 +28,7 @@ public class ListTasksActivity extends Activity {
 
         TaskOpenHelper database = new TaskOpenHelper(this);
         // Get all the tasks
-        Cursor cursor = database.getReadableDatabase().query(TaskOpenHelper.TASK_TABLE_NAME, null, null, null, null, null, null);
+        final Cursor cursor = database.getReadableDatabase().query(TaskOpenHelper.TASK_TABLE_NAME, null, null, null, null, null, null);
         // Put the tasks' titles in the TextView with id "taskRow" from the layout called "listtasks-list"
         CursorAdapter adapter = new SimpleCursorAdapter(
                 this,
@@ -46,7 +46,10 @@ public class ListTasksActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int taskIndex, long l) {
                 Intent intent = new Intent(ListTasksActivity.this, ShowTaskActivity.class);
-                intent.putExtra(ShowTaskActivity.TASK_INDEX, taskIndex);
+                cursor.moveToPosition(taskIndex);
+                int columnIndex = cursor.getColumnIndex("_id");
+                int taskId = (int) cursor.getLong(columnIndex);
+                intent.putExtra(ShowTaskActivity.TASK_ID, taskId);
                 startActivity(intent);
             }
         });

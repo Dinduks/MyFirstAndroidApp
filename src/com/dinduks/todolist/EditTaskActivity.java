@@ -21,7 +21,7 @@ public class EditTaskActivity extends Activity {
         setContentView(R.layout.taskform);
 
         Bundle bundle = this.getIntent().getExtras();
-        final int taskIndex = bundle.getInt(ShowTaskActivity.TASK_INDEX);
+        final int taskIndex = bundle.getInt(ShowTaskActivity.TASK_ID);
         Task task = StorageSingleton.get().getTasks().get(taskIndex);
         
         final EditText title = (EditText) findViewById(R.id.taskTitle);
@@ -45,7 +45,7 @@ public class EditTaskActivity extends Activity {
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(EditTaskActivity.this, ShowTaskActivity.class);
-                intent.putExtra(ShowTaskActivity.TASK_INDEX, taskIndex);
+                intent.putExtra(ShowTaskActivity.TASK_ID, taskIndex);
                 startActivity(intent);
             }
         });
@@ -59,7 +59,7 @@ public class EditTaskActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(EditTaskActivity.this, ShowTaskActivity.class);
-                        intent.putExtra(ShowTaskActivity.TASK_INDEX, taskIndex);
+                        intent.putExtra(ShowTaskActivity.TASK_ID, taskIndex);
                         startActivity(intent);
                     }
                 });
