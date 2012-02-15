@@ -31,11 +31,11 @@ public class ListTasksActivity extends Activity {
         final Cursor cursor = database.getReadableDatabase().query(TaskOpenHelper.TASK_TABLE_NAME, null, null, null, null, null, null);
         // Put the tasks' titles in the TextView with id "taskRow" from the layout called "listtasks-list"
         CursorAdapter adapter = new SimpleCursorAdapter(
-                this,
-                R.layout.listtasks_list,
-                cursor,
-                new String[]{TaskOpenHelper.TITLE_COLUMN},
-                new int[]{R.id.taskRow}
+            this,
+            R.layout.listtasks_list,
+            cursor,
+            new String[]{TaskOpenHelper.TITLE_COLUMN},
+            new int[]{R.id.taskRow}
         );
 
         ListView lv = new ListView(this);

@@ -23,19 +23,20 @@ public class ShowTaskActivity extends Activity {
         Bundle bundle = this.getIntent().getExtras();
         final int taskId = bundle.getInt(TASK_ID);
 
-        TaskOpenHelper database = new TaskOpenHelper(this);
+        final TaskOpenHelper database = new TaskOpenHelper(this);
         Cursor cursor = database.getReadableDatabase().query(
-                TaskOpenHelper.TASK_TABLE_NAME,
-                null,
-                "_id=?",
-                new String[]{String.valueOf(taskId)},
-                null,
-                null,
-                null);
+            TaskOpenHelper.TASK_TABLE_NAME,
+            null,
+            "_id=?",
+            new String[]{String.valueOf(taskId)},
+            null,
+            null,
+            null
+        );
 
         cursor.moveToFirst();
         String title = cursor.getString(cursor.getColumnIndex(TaskOpenHelper.TITLE_COLUMN));
-        String description = cursor.getString(cursor.getColumnIndex(TaskOpenHelper.TITLE_COLUMN));
+        String description = cursor.getString(cursor.getColumnIndex(TaskOpenHelper.DESCRIPTION_COLUMN));
         
         TextView titleView = (TextView) findViewById(R.id.title);
         TextView descriptionView = (TextView) findViewById(R.id.description);
@@ -46,7 +47,11 @@ public class ShowTaskActivity extends Activity {
         deleteTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageSingleton.get().deleteTask(taskId);
+                database.getWritableDatabase().delete(
+                    TaskOpenHelper.TASK_TABLE_NAME,
+                    "_id=?",
+                    new String[]{String.valueOf(taskId)}
+                );
                 buildDeleteSuccessDialog().show();
             }
         });

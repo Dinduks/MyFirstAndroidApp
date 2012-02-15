@@ -62,14 +62,14 @@ public class AddATaskActivity extends Activity {
     private AlertDialog buildSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddATaskActivity.this);
         builder.setMessage("The task was successfully saved!")
-                .setCancelable(false)
-                .setNeutralButton("Go back to the homepage", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(AddATaskActivity.this, HomepageActivity.class);
-                        startActivity(intent);
-                    }
-                });
+               .setCancelable(false)
+               .setNeutralButton("Go back to the homepage", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       Intent intent = new Intent(AddATaskActivity.this, HomepageActivity.class);
+                       startActivity(intent);
+                   }
+               });
         return builder.create();
     }
 
