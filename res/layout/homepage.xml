@@ -6,11 +6,11 @@
     <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Add a task"
+            android:text="@string/add_a_task.en"
             android:id="@+id/addATaskButton" />
     <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="View all the tasks"
+            android:text="@string/view_allthe_tasks.en"
             android:id="@+id/viewAllTheTasksButton" />
 </LinearLayout>

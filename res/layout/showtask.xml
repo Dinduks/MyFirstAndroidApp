@@ -7,7 +7,7 @@
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:textStyle="bold"
-              android:text="Title: "
+              android:text="@string/title_title.en"
               android:singleLine="false" />
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
@@ -15,16 +15,16 @@
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:textStyle="bold"
-              android:text="Description: "/>
+              android:text="@string/description_title.en"/>
     <TextView android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               android:id="@+id/description" />
     <Button android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Edit this task"
+            android:text="@string/edit_task.en"
             android:id="@+id/editTask" />
     <Button android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Delete this task"
+            android:text="@string/delete_this_task.en"
             android:id="@+id/deleteTask" />
 </LinearLayout>

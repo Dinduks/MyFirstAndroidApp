@@ -11,6 +11,6 @@
 
     <Button android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Return to the homepage"
+            android:text="@string/return_to_the_homepage.en"
             android:id="@+id/goBackButton" />
 </LinearLayout>

@@ -8,18 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.dinduks.todolist.models.Task;
 
 /**
  *
  * @author dinduks
  */
 public class EditTaskActivity extends Activity {
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.taskform);
 
         Bundle bundle = this.getIntent().getExtras();
-        final int taskIndex = bundle.getInt("taskIndex");
+        final int taskIndex = bundle.getInt(ShowTaskActivity.TASK_INDEX);
         Task task = StorageSingleton.get().getTasks().get(taskIndex);
         
         final EditText title = (EditText) findViewById(R.id.taskTitle);
@@ -43,7 +45,7 @@ public class EditTaskActivity extends Activity {
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(EditTaskActivity.this, ShowTaskActivity.class);
-                intent.putExtra("taskIndex", taskIndex);
+                intent.putExtra(ShowTaskActivity.TASK_INDEX, taskIndex);
                 startActivity(intent);
             }
         });
@@ -57,10 +59,11 @@ public class EditTaskActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(EditTaskActivity.this, ShowTaskActivity.class);
-                        intent.putExtra("taskIndex", taskIndex);
+                        intent.putExtra(ShowTaskActivity.TASK_INDEX, taskIndex);
                         startActivity(intent);
                     }
                 });
         return builder.create();
     }
+
 }

@@ -8,26 +8,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import com.dinduks.todolist.models.Task;
 
 /**
  * @author dinduks
  */
 public class ShowTaskActivity extends Activity {
 
+    public static final String TASK_INDEX = "taskIndex";
+
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.showtask);
 
         Bundle bundle = this.getIntent().getExtras();
-        final int taskIndex = bundle.getInt("taskIndex");
+        final int taskIndex = bundle.getInt(TASK_INDEX);
 
         Task task = StorageSingleton.get().getTasks().get(taskIndex);
 
-        TextView title = (TextView) findViewById(R.id.title);
-        TextView description = (TextView) findViewById(R.id.description);
+        TextView titleView = (TextView) findViewById(R.id.title);
+        TextView descriptionView = (TextView) findViewById(R.id.description);
 
-        title.setText(task.getTitle());
-        description.setText(task.getDescription());
+        titleView.setText(task.getTitle());
+        descriptionView.setText(task.getDescription());
 
         Button deleteTaskButton = (Button) findViewById(R.id.deleteTask);
         deleteTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +46,7 @@ public class ShowTaskActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShowTaskActivity.this, EditTaskActivity.class);
-                intent.putExtra("taskIndex", taskIndex);
+                intent.putExtra(TASK_INDEX, taskIndex);
                 startActivity(intent);
             }
         });

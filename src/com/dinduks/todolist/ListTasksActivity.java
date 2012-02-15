@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import com.dinduks.todolist.models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author dinduks
  */
 public class ListTasksActivity extends Activity {
+
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.listtasks);
@@ -34,7 +36,7 @@ public class ListTasksActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int taskIndex, long l) {
                 Intent intent = new Intent(ListTasksActivity.this, ShowTaskActivity.class);
-                intent.putExtra("taskIndex'", taskIndex);
+                intent.putExtra(ShowTaskActivity.TASK_INDEX, taskIndex);
                 startActivity(intent);
             }
         });
@@ -51,4 +53,5 @@ public class ListTasksActivity extends Activity {
             }
         });
     }
+
 }

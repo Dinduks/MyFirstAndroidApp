@@ -1,4 +1,7 @@
-package com.dinduks.todolist;
+package com.dinduks.todolist.models;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -6,6 +9,8 @@ package com.dinduks.todolist;
  */
 public class Task {
 
+    public static final String TITLE = "title";
+    public static final String DESCRIPTION = "description";
     private String title;
     private String description;
 
@@ -25,4 +30,10 @@ public class Task {
         this.description = description;
     }
 
+    public Map<String, String> getMap() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put(TITLE, title);
+        map.put(DESCRIPTION, description);
+        return map;
+    }
 }
