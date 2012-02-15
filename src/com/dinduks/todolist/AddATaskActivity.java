@@ -2,9 +2,13 @@ package com.dinduks.todolist;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,10 +47,16 @@ public class AddATaskActivity extends Activity {
     }
 
     private void saveTask(String title, String description) {
-        Task task = new Task();
-        task.setTitle(title);
-        task.setDescription(description);
-        StorageSingleton.get().addTask(task);
+        SQLiteOpenHelper database = new TaskOpenHelper(this);
+        ContentValues values = new ContentValues();
+        values.put("title", title);
+        values.put("description", description);
+        try {
+            database.getWritableDatabase().insert(TaskOpenHelper.TASK_TABLE_NAME, "", values);
+        } catch (SQLiteException e) {
+            Log.e("Error while writing into the database", e.toString());
+        }
+        database.close();
     }
 
     private AlertDialog buildSuccessDialog() {

@@ -1,9 +1,15 @@
 package com.dinduks.todolist;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.dinduks.todolist.models.Task;
 
@@ -20,17 +26,21 @@ public class ListTasksActivity extends Activity {
         super.onCreate(icicle);
         setContentView(R.layout.listtasks);
 
-        // Create a list of the tasks' titles
-        List<Task> tasks = StorageSingleton.get().getTasks();
-        List<String> tasksNames = new ArrayList<String>();
-        for (Task task: tasks) {
-            tasksNames.add(task.getTitle());
-        }
+        TaskOpenHelper database = new TaskOpenHelper(this);
+        // Get all the tasks
+        Cursor cursor = database.getReadableDatabase().query(TaskOpenHelper.TASK_TABLE_NAME, null, null, null, null, null, null);
+        // Put the tasks' titles in the TextView with id "taskRow" from the layout called "listtasks-list"
+        CursorAdapter adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.listtasks_list,
+                cursor,
+                new String[]{TaskOpenHelper.TITLE_COLUMN},
+                new int[]{R.id.taskRow}
+        );
 
         ListView lv = new ListView(this);
-        // Create an adapter using the XML list and the list of the tasks' titles
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listtasks_list, tasksNames);
         lv.setAdapter(adapter);
+
         // Set an OnClick event on the list's elements
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
